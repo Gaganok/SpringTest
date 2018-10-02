@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+<style>
+body {
+	margin: 0px;
+}
+
+#formContainer {
+	transform: translate(0, 250%);
+	width: 50%;
+	margin: auto;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+table {
+	margin: auto;
+}
+
+#submitButton {
+	margin-top: 10px;
+	width: 100px;
+	height: 40px;
+	border-radius: 8px;
+	background-color: rgba(39, 174, 96, 0.7);
+	border: none;
+	color: white;
+}
+.input{
+	box-sizing: border-box;
+	padding: 5px;
+}
+
+table tr td {
+	padding: 5px;
+}
+</style>
+</head>
+
+<body>
+	<div id="formContainer">
+		<form method="POST" id="loginForm" name="form" action="javascript:void(null);" onsubmit="boi()">
+			<table>
+				<tr>
+					<td><label>Login</label></td>
+					<td><input class="input" name="login" placeholder="John Smith" /></td>
+				</tr>
+				<tr>
+					<td><label>Password</label></td>
+					<td><input class="input" type="password" name="pass" placeholder="*****" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Submit" id="submitButton"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+	var host = "localhost";
+	var port = 7777;
+	
+	
+	function boi(){
+		var dat = $('#loginForm').serialize();
+		console.log(dat);
+		var req = {
+				"method": "POST",
+				"crossDomain": true,
+				"url": "http://" + host + ":" + port + "/login",
+				"data": dat
+		};
+		
+		$.ajax(req).done(function(response) {
+			$("input[type='submit']").css("background-color", "#3498db");
+		}).fail(function () {
+            console.log("HUIVO");
+        });
+	}
+	
+	
+</script>
+
+
+
+
+
+
+
